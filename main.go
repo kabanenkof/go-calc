@@ -63,24 +63,24 @@ func main() {
 	splitInput := strings.Split(input, " ")
 
 	if len(splitInput) != 3 {
-		fmt.Println("Ошибка: недопустимое выражение")
+		panic("Ошибка: недопустимое выражение")
 		return
 	}
 
 	firstNumber, err := strconv.Atoi(splitInput[0])
 	if err != nil {
-		fmt.Println("Ошибка: недопустимое число")
+		panic("Ошибка: недопустимое число")
 		return
 	}
 
 	secondNumber, err := strconv.Atoi(splitInput[2])
 	if err != nil {
-		fmt.Println("Ошибка: недопустимое число")
+		panic("Ошибка: недопустимое число")
 		return
 	}
 
 	if firstNumber < 1 || firstNumber > 10 || secondNumber < 1 || secondNumber > 10 {
-		fmt.Println("Ошибка: числа должны быть от 1 до 10")
+		panic("Ошибка: числа должны быть от 1 до 10")
 		return
 	}
 
@@ -88,7 +88,7 @@ func main() {
 
 	if _, ok := arabicNumbers[splitInput[0]]; ok {
 		if _, ok := romanNumbers[splitInput[2]]; ok {
-			fmt.Println("Ошибка: числа должны быть либо только арабскими, либо только римскими")
+			panic("Ошибка: числа должны быть либо только арабскими, либо только римскими")
 			return
 		} else {
 			result := calculate(firstNumber, secondNumber, operator)
@@ -96,18 +96,18 @@ func main() {
 		}
 	} else if _, ok := romanNumbers[splitInput[0]]; ok {
 		if _, ok := arabicNumbers[splitInput[2]]; ok {
-			fmt.Println("Ошибка: числа должны быть либо только арабскими, либо только римскими")
+			panic("Ошибка: числа должны быть либо только арабскими, либо только римскими")
 			return
 		} else {
 			result := calculate(firstNumber, secondNumber, operator)
 			if result < 0 {
-				fmt.Println("Ошибка: римские числа не могут быть отрицательными")
+				panic("Ошибка: римские числа не могут быть отрицательными")
 				return
 			}
 			fmt.Println("Результат:", toRoman(result))
 		}
 	} else {
-		fmt.Println("Ошибка: недопустимое выражение")
+		panic("Ошибка: недопустимое выражение")
 		return
 	}
 }
