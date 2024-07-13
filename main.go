@@ -28,6 +28,8 @@ func calculate(a int, b int, operator string) int {
 		return a * b
 	case "/":
 		return a / b
+	default:
+		panic("Введите коректный математический оператор:")
 	}
 	return 0
 }
